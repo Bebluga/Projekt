@@ -6,16 +6,59 @@
     <title>Kontakt</title>
     <link rel="stylesheet" href="../css/style.css" />
   </head>
-  <body>
+  <body class="sub-page contact-page">
     <header>
       <h1><a href="index.html">Levin Bruggmann</a></h1>
       <nav>
         <ul class="navigation">
-          <li><a href="faehigkeiten.html">Fähigkeiten</a></li>
+          <li><a href="faehigkeiten.html">F&auml;higkeiten</a></li>
           <li><a href="portfolio.html">Portfolio</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
       </nav>
     </header>
+
+    <main>
+      <h2>Kontakt</h2>
+
+      <section class="contact-list" aria-label="Kontaktangaben">
+        <p>E-mail: levin.bruggmann@edu.gbssg.ch</p>
+        <p>Wohnort: 9042 Speicher, Flecken 3</p>
+
+        <div class="contact-row">
+          <div class="contact-small">
+            <p>Tel. : 076 xxx xxx xx</p>
+            <p>Social-Media: Linktree</p>
+          </div>
+          <div class="portrait-placeholder contact-photo" aria-label="Platzhalter Portrait">
+            <span>Bild</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-panel" aria-label="Wohnort und Kontaktformular">
+        <div>
+          <h3>Wohnort</h3>
+          <img src="../images/address_img.png" alt="Kartenausschnitt vom Wohnort" />
+        </div>
+
+        <form class="contact-form" action="mailto:levin.bruggmann@edu.gbssg.ch" method="post" enctype="text/plain">
+          <h3>Kontaktformular</h3>
+
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" required />
+
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" required />
+
+          <label for="message">Nachricht</label>
+          <textarea id="message" name="nachricht" required></textarea>
+
+          <button type="submit">Absenden</button>
+        </form>
+      </section>
+
+      <footer>&copy;Levin Bruggmann</footer>
+    </main>
   </body>
 </html>

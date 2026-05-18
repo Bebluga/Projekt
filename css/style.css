@@ -1,37 +1,76 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 
+:root {
+  --primary: #2563eb;
+  --card: #dce6ff;
+  --background: #ffffff;
+  --title: #111827;
+  --text: #374151;
+  --button: #2563eb;
+  --button-text: #ffffff;
+  --border: #c7d7ff;
+  --shadow: 0 18px 45px rgba(37, 99, 235, 0.12);
+}
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  min-height: 100%;
+  background-color: var(--background);
+}
+
 body {
+  min-height: 100vh;
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
-  background-color: #ffffff;
-  color: #374151;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(220, 230, 255, 0.5) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(220, 230, 255, 0.5) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.35;
+}
+
+header,
+main {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
 }
 
 header {
-  width: 100%;
-  padding: 24px 7%;
+  padding: 24px 0 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 40px;
-  border-bottom: 2px solid #dce6ff;
-  background-color: #ffffff;
+  gap: 28px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
 }
 
 h1 {
-  margin: 0;
-  font-size: 55px;
+  color: var(--title);
+  font-size: clamp(2.125rem, 5vw, 3.4375rem);
   font-weight: 700;
-  line-height: 1.1;
-  color: #111827;
+  line-height: 1;
 }
 
 h1 a {
-  color: #111827;
+  color: inherit;
   text-decoration: none;
 }
 
@@ -39,290 +78,314 @@ h1 a {
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
   list-style: none;
 }
 
 .navigation a {
-  display: block;
-  min-width: 165px;
-  padding: 13px 24px;
-  border-radius: 24px;
-  background-color: #2563eb;
-  color: #ffffff;
-  font-size: 20px;
-  text-align: center;
+  min-width: 138px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 22px;
+  border: 2px solid var(--button);
+  border-radius: 999px;
+  background-color: var(--button);
+  color: var(--button-text);
+  font-size: clamp(0.8125rem, 1.4vw, 1.125rem);
+  font-weight: 700;
+  line-height: 1;
   text-decoration: none;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
 }
 
-.navigation a:hover {
+.navigation a:hover,
+.navigation a:focus-visible {
   background-color: #1d4ed8;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22);
+  transform: translateY(-1px);
+}
+
+.navigation a[aria-current="page"] {
+  background-color: var(--background);
+  color: var(--primary);
 }
 
 main {
-  min-height: calc(100vh - 120px);
-  padding: 60px 7% 30px;
+  min-height: calc(100vh - 124px);
+  padding: 36px 0 28px;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
 }
 
 h2 {
-  margin: 0 0 55px;
-  font-size: 48px;
+  margin-bottom: 34px;
+  color: var(--title);
+  font-size: clamp(2.25rem, 4.4vw, 3rem);
   font-weight: 700;
-  line-height: 1.1;
-  color: #111827;
+  line-height: 1.05;
   text-align: center;
 }
 
 h3 {
-  margin: 0 0 22px;
-  font-size: 36px;
+  margin-bottom: 16px;
+  color: var(--title);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
   font-weight: 400;
-  line-height: 1.2;
-  color: #111827;
+  line-height: 1.18;
   text-align: center;
 }
 
 p {
-  margin: 0;
-  font-size: 30px;
+  color: var(--text);
+  font-size: clamp(1.25rem, 2.2vw, 1.875rem);
   font-weight: 400;
   line-height: 1.35;
-  color: #374151;
 }
 
 footer {
   margin-top: auto;
-  padding-top: 50px;
-  font-size: 28px;
-  color: #111827;
+  padding-top: 36px;
+  color: var(--title);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
   text-align: center;
+}
+
+.about-section,
+.skills-grid,
+.portfolio-grid,
+.contact-list,
+.contact-panel {
+  width: 100%;
+  max-width: 1040px;
+  margin-inline: auto;
 }
 
 .about-section {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
   align-items: center;
-  gap: 90px;
+  gap: 64px;
 }
 
-.about-text {
-  width: 58%;
-  max-width: 680px;
+.about-card,
+.skill-card,
+.portfolio-card,
+.contact-list > p,
+.contact-small p,
+.contact-panel {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
 }
 
 .about-card {
-  width: 100%;
-  min-height: 330px;
-  padding: 55px;
-  border-radius: 32px;
-  background-color: #dce6ff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-height: 270px;
+  padding: 44px;
+  display: grid;
+  place-items: center;
+}
+
+.about-card p,
+.portfolio-card p,
+.skill-card p {
+  text-align: center;
 }
 
 .about-card p {
-  max-width: 700px;
-  font-size: 30px;
-  text-align: center;
+  max-width: 650px;
 }
 
 .profile-image {
   width: 220px;
   height: 280px;
+  display: block;
   object-fit: cover;
   object-position: center;
-  border: 8px solid #dce6ff;
-  border-radius: 30px;
-  display: block;
-  justify-self: center;
+  border: 8px solid var(--card);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
 }
 
 .home-page .profile-image {
-  width: 280px;
-  height: 370px;
+  width: 300px;
+  height: 380px;
 }
 
 .skills-grid {
-  width: 100%;
-  max-width: 1150px;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px 65px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
 }
 
 .skill-card {
-  min-height: 270px;
-  padding: 34px 40px;
-  border-radius: 30px;
-  background-color: #dce6ff;
+  min-height: 236px;
+  padding: 30px 34px 28px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.skill-card h3 {
-  margin-bottom: 18px;
-}
-
-.skill-card p {
-  font-size: 24px;
-  text-align: center;
+.skill-card p,
+.portfolio-card p {
+  font-size: clamp(1.125rem, 1.8vw, 1.5rem);
 }
 
 .rating {
-  margin-top: 28px;
-  display: flex;
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(18px, 44px));
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .rating span {
-  width: 48px;
-  height: 16px;
-  border-radius: 20px;
-  background-color: #111827;
+  height: 14px;
+  border-radius: 999px;
+  background-color: var(--title);
 }
 
 .rating .empty {
-  background-color: #ffffff;
+  background-color: var(--background);
 }
 
 .portfolio-grid {
-  width: 100%;
-  max-width: 1050px;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 70px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
 }
 
 .portfolio-item {
-  width: 100%;
+  min-width: 0;
 }
 
 .portfolio-card {
-  width: 100%;
-  min-height: 230px;
-  margin-bottom: 34px;
-  padding: 40px;
-  border-radius: 30px;
-  background-color: #dce6ff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.portfolio-card p {
-  font-size: 24px;
-  text-align: center;
+  min-height: 190px;
+  margin-bottom: 26px;
+  padding: 34px;
+  display: grid;
+  place-items: center;
 }
 
 .image-placeholder {
-  width: 100%;
-  height: 240px;
-  border-radius: 30px;
+  width: min(100%, 330px);
+  aspect-ratio: 1;
+  margin-inline: auto;
   overflow: hidden;
-  background-color: #dce6ff;
+  border-radius: 24px;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
 }
 
-.image-placeholder img,
-.portfolio-item > img {
+.image-placeholder img {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
   object-position: center;
-  display: block;
+}
+
+.project-logo img {
+  object-fit: contain;
+  padding: 10px;
+  background-color: #111827;
 }
 
 .contact-page main {
-  gap: 34px;
+  gap: 30px;
 }
 
-.contact-list {
-  width: 100%;
-  max-width: 1150px;
-  margin: 0 auto;
+.contact-list a {
+  color: var(--primary);
+  overflow-wrap: anywhere;
 }
 
 .contact-list > p,
 .contact-small p {
-  min-height: 115px;
-  margin-bottom: 36px;
-  padding: 26px;
-  border-radius: 22px;
-  background-color: #dce6ff;
-  color: #111827;
-  font-size: 30px;
+  min-height: 94px;
+  margin-bottom: 24px;
+  padding: 24px 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--title);
   text-align: center;
   overflow-wrap: anywhere;
 }
 
 .contact-row {
   display: grid;
-  grid-template-columns: 1fr 260px;
-  gap: 70px;
+  grid-template-columns: minmax(0, 1fr) 260px;
   align-items: center;
-  margin-bottom: 55px;
+  gap: 52px;
+  margin-bottom: 28px;
 }
 
 .contact-small {
-  width: 100%;
+  min-width: 0;
+}
+
+.contact-small p:last-child {
+  margin-bottom: 0;
+}
+
+.contact-row .profile-image {
+  margin-inline: auto;
 }
 
 .contact-panel {
-  width: 100%;
-  max-width: 1150px;
-  margin: 0 auto;
-  padding: 55px;
-  border-radius: 32px;
-  background-color: #dce6ff;
+  padding: 44px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 70px;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
   align-items: start;
+  gap: 48px;
 }
 
 .location-box,
-.form-box {
-  width: 100%;
-  text-align: center;
+.contact-form {
+  min-width: 0;
 }
 
-.location-image,
-.location-video,
-.contact-video {
+.location-video {
   width: 100%;
-  max-width: 520px;
-  height: auto;
+  max-width: 460px;
+  aspect-ratio: 1;
   display: block;
-  margin: 0 auto;
-  background-color: #ffffff;
+  margin-inline: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  background-color: var(--background);
+}
+
+.location-video {
+  object-fit: cover;
 }
 
 .contact-form {
   width: 100%;
-  max-width: 360px;
-  margin: 0 auto;
-  padding: 22px;
-  background-color: #ffffff;
+  max-width: 380px;
+  margin-inline: auto;
+  padding: 24px;
+  border-radius: 8px;
+  background-color: var(--background);
+}
+
+.contact-form h3 {
+  margin-bottom: 8px;
 }
 
 .contact-form label {
   display: block;
   margin-top: 14px;
-  color: #111827;
-  font-size: 20px;
+  color: var(--title);
+  font-size: 1rem;
   font-weight: 700;
   text-align: center;
 }
@@ -330,339 +393,168 @@ footer {
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  margin-top: 10px;
-  padding: 14px;
-  border: none;
-  border-bottom: 3px solid #111827;
-  background-color: #ffffff;
-  font-family: "Inter", Arial, sans-serif;
-  font-size: 18px;
-  color: #374151;
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid transparent;
+  border-bottom: 2px solid var(--title);
+  border-radius: 0;
+  background-color: var(--background);
+  color: var(--text);
+  font: 400 1rem/1.3 "Inter", Arial, sans-serif;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 3px solid rgba(37, 99, 235, 0.22);
+  border-color: var(--primary);
 }
 
 .contact-form textarea {
-  height: 140px;
-  border-bottom: none;
-  background-color: #dddddd;
+  min-height: 130px;
   resize: vertical;
+  border: 0;
+  border-radius: 4px;
+  background-color: #e5e7eb;
 }
 
 .contact-form button {
   width: 100%;
   margin-top: 18px;
-  padding: 14px;
-  border: none;
-  border-radius: 24px;
-  background-color: #2563eb;
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 700;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 999px;
+  background-color: var(--button);
+  color: var(--button-text);
+  font: 700 1.0625rem/1 "Inter", Arial, sans-serif;
   cursor: pointer;
 }
 
-@media (max-width: 1200px) {
-  header {
-    padding: 22px 5%;
-  }
-
-  h1 {
-    font-size: 42px;
-  }
-
-  .navigation a {
-    min-width: 140px;
-    padding: 11px 20px;
-    font-size: 17px;
-  }
-
-  main {
-    padding: 52px 5% 30px;
-  }
-
-  .about-section {
-    gap: 60px;
-  }
-
-  .about-card {
-    min-height: 290px;
-    padding: 42px;
-  }
-
-  .about-card p {
-    font-size: 25px;
-  }
-
-  .profile-image {
-    width: 280px;
-    height: 370px;
-    object-fit: cover;
-    object-position: center;
-    border: 8px solid #dce6ff;
-    border-radius: 30px;
-    display: block;
-    flex-shrink: 0;
-  }
-
-  .skill-card p,
-  .portfolio-card p {
-    font-size: 22px;
-  }
-
-  .rating span {
-    width: 40px;
-  }
+.contact-form button:hover,
+.contact-form button:focus-visible {
+  background-color: #1d4ed8;
 }
 
 @media (max-width: 900px) {
-  body {
-    overflow-x: hidden;
+  header,
+  main {
+    width: min(100% - 32px, 680px);
   }
 
   header {
-    padding: 20px 18px;
     flex-direction: column;
-    align-items: center;
     gap: 18px;
-  }
-
-  h1 {
-    font-size: 38px;
     text-align: center;
   }
 
   .navigation {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    justify-content: stretch;
   }
 
   .navigation a {
     min-width: 0;
-    width: 100%;
-    padding: 11px 8px;
-    font-size: 16px;
+    padding-inline: 10px;
   }
 
   main {
-    min-height: calc(100vh - 150px);
-    padding: 42px 18px 26px;
+    padding-top: 26px;
   }
 
-  h2 {
-    margin-bottom: 38px;
-    font-size: 42px;
-  }
-
-  h3 {
-    font-size: 32px;
-  }
-
-  footer {
-    padding-top: 45px;
-    font-size: 24px;
+  .about-section,
+  .skills-grid,
+  .portfolio-grid,
+  .contact-row,
+  .contact-panel {
+    grid-template-columns: 1fr;
   }
 
   .about-section {
-    flex-direction: column;
     gap: 34px;
   }
 
-  .about-text {
-    width: 100%;
-    max-width: 680px;
+  .about-section > div:last-child {
+    order: -1;
   }
 
-  .about-card {
-    min-height: 250px;
-    padding: 34px 26px;
-  }
-
-  .about-card p {
-    font-size: 23px;
-  }
-
-  .profile-image {
-    width: 220px;
-    height: 280px;
-    margin: 0 auto;
-  }
-
+  .profile-image,
   .home-page .profile-image {
-    width: 260px;
-    height: 340px;
-  }
-
-  .skills-grid {
-    max-width: 650px;
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-
-  .skill-card {
-    min-height: 235px;
-  }
-
-  .portfolio-grid {
-    max-width: 520px;
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
-
-  .portfolio-card {
-    min-height: 220px;
-  }
-
-  .image-placeholder {
-    height: 230px;
-  }
-
-  .contact-list > p,
-  .contact-small p {
-    min-height: 95px;
-    margin-bottom: 24px;
-    font-size: 24px;
+    width: min(260px, 72vw);
+    height: auto;
+    aspect-ratio: 3 / 4;
+    margin-inline: auto;
   }
 
   .contact-row {
-    display: flex;
-    flex-direction: column;
     gap: 24px;
-    margin-bottom: 42px;
   }
 
   .contact-panel {
-    padding: 34px 24px;
-    grid-template-columns: 1fr;
-    gap: 45px;
-  }
-
-  .location-image,
-  .location-video,
-  .contact-video {
-    max-width: 420px;
-  }
-
-  .contact-form {
-    max-width: 420px;
+    padding: 30px 22px;
+    gap: 34px;
   }
 }
 
 @media (max-width: 520px) {
-  header {
-    padding: 18px 12px;
-  }
-
-  h1 {
-    font-size: 32px;
-  }
-
-  .navigation {
-    gap: 8px;
-  }
-
-  .navigation a {
-    padding: 10px 5px;
-    font-size: 13px;
-  }
-
+  header,
   main {
-    padding: 34px 12px 24px;
+    width: min(100% - 24px, 460px);
   }
 
   h2 {
-    margin-bottom: 30px;
-    font-size: 36px;
+    margin-bottom: 26px;
   }
 
-  h3 {
-    font-size: 28px;
+  .navigation {
+    gap: 7px;
   }
 
-  p {
-    font-size: 22px;
+  .navigation a {
+    padding: 10px 6px;
+  }
+
+  .about-card,
+  .skill-card,
+  .portfolio-card,
+  .contact-panel {
+    border-radius: 14px;
+  }
+
+  .about-card,
+  .skill-card,
+  .portfolio-card {
+    padding: 24px 18px;
   }
 
   .about-card {
-    min-height: 220px;
-    padding: 28px 20px;
-    border-radius: 26px;
-  }
-
-  .about-card p {
-    font-size: 20px;
-  }
-
-  .profile-image {
-    width: 190px;
-    height: 240px;
-    border-width: 6px;
-    border-radius: 24px;
-  }
-
-  .home-page .profile-image {
-    width: 220px;
-    height: 290px;
+    min-height: 210px;
   }
 
   .skill-card {
-    min-height: 220px;
-    padding: 28px 20px;
-    border-radius: 26px;
-  }
-
-  .skill-card p,
-  .portfolio-card p {
-    font-size: 18px;
+    min-height: 210px;
   }
 
   .rating {
+    grid-template-columns: repeat(7, minmax(18px, 1fr));
     gap: 6px;
   }
 
   .rating span {
-    width: 30px;
     height: 12px;
-  }
-
-  .portfolio-card {
-    min-height: 190px;
-    padding: 30px 22px;
-    border-radius: 26px;
-  }
-
-  .image-placeholder {
-    height: 200px;
-    border-radius: 26px;
   }
 
   .contact-list > p,
   .contact-small p {
-    min-height: 80px;
-    padding: 20px 14px;
-    font-size: 20px;
-    border-radius: 18px;
+    min-height: 78px;
+    padding: 18px 14px;
   }
 
   .contact-panel {
-    padding: 26px 16px;
-    border-radius: 26px;
+    padding: 24px 16px;
   }
 
   .contact-form {
     padding: 18px;
-  }
-
-  .contact-form label {
-    font-size: 17px;
-  }
-
-  .contact-form input,
-  .contact-form textarea {
-    font-size: 15px;
-  }
-
-  footer {
-    font-size: 20px;
   }
 }

@@ -344,7 +344,7 @@ footer {
   padding: 44px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
-  align-items: start;
+  align-items: stretch;
   gap: 48px;
 }
 
@@ -368,11 +368,45 @@ footer {
   object-fit: cover;
 }
 
+.maps-link {
+  width: min(100%, 460px);
+  margin: 18px auto 0;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--primary);
+  border-radius: 999px;
+  background-color: var(--background);
+  color: var(--primary);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.maps-link:hover,
+.maps-link:focus-visible {
+  background-color: var(--primary);
+  color: var(--button-text);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.18);
+  transform: translateY(-1px);
+}
+
 .contact-form {
   width: 100%;
   max-width: 380px;
+  height: 100%;
   margin-inline: auto;
   padding: 24px;
+  display: flex;
+  flex-direction: column;
   border-radius: 8px;
   background-color: var(--background);
 }
@@ -410,6 +444,7 @@ footer {
 }
 
 .contact-form textarea {
+  flex: 1;
   min-height: 130px;
   resize: vertical;
   border: 0;

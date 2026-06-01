@@ -9,6 +9,7 @@
   --button: #2563eb;
   --button-text: #ffffff;
   --border: #c7d7ff;
+  --border-strong: #9db8ff;
   --shadow: 0 18px 45px rgba(37, 99, 235, 0.12);
 }
 
@@ -27,6 +28,7 @@ body {
   font-family: "Inter", Arial, sans-serif;
   background-color: var(--background);
   color: var(--text);
+  line-height: 1.5;
 }
 
 body::before {
@@ -74,6 +76,14 @@ h1 a {
   text-decoration: none;
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.28);
+  outline-offset: 3px;
+}
+
 .navigation {
   margin: 0;
   padding: 0;
@@ -101,7 +111,8 @@ h1 a {
   transition:
     transform 160ms ease,
     box-shadow 160ms ease,
-    background-color 160ms ease;
+    background-color 160ms ease,
+    border-color 160ms ease;
 }
 
 .navigation a:hover,
@@ -114,6 +125,7 @@ h1 a {
 .navigation a[aria-current="page"] {
   background-color: var(--background);
   color: var(--primary);
+  border-color: var(--border-strong);
 }
 
 main {
@@ -143,7 +155,7 @@ h3 {
 
 p {
   color: var(--text);
-  font-size: clamp(1.25rem, 2.2vw, 1.875rem);
+  font-size: clamp(1.125rem, 2vw, 1.65rem);
   font-weight: 400;
   line-height: 1.35;
 }
@@ -181,13 +193,13 @@ footer {
 .contact-panel {
   background-color: var(--card);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 16px;
   box-shadow: var(--shadow);
 }
 
 .about-card {
-  min-height: 270px;
-  padding: 44px;
+  min-height: 250px;
+  padding: 40px;
   display: grid;
   place-items: center;
 }
@@ -208,8 +220,8 @@ footer {
   display: block;
   object-fit: cover;
   object-position: center;
-  border: 8px solid var(--card);
-  border-radius: 22px;
+  border: 7px solid var(--card);
+  border-radius: 20px;
   box-shadow: var(--shadow);
 }
 
@@ -230,6 +242,16 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+
+.skill-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 20px 48px rgba(37, 99, 235, 0.16);
+  transform: translateY(-2px);
 }
 
 .skill-card p,
@@ -282,6 +304,16 @@ footer {
   background-color: var(--card);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+
+.portfolio-item:hover .image-placeholder {
+  border-color: var(--border-strong);
+  box-shadow: 0 20px 48px rgba(37, 99, 235, 0.16);
+  transform: translateY(-2px);
 }
 
 .image-placeholder img {
@@ -343,7 +375,7 @@ footer {
 .contact-panel {
   padding: 44px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.95fr);
   align-items: stretch;
   gap: 48px;
 }
@@ -362,10 +394,6 @@ footer {
   object-fit: cover;
   border-radius: 10px;
   background-color: var(--background);
-}
-
-.location-video {
-  object-fit: cover;
 }
 
 .maps-link {
@@ -401,72 +429,131 @@ footer {
 
 .contact-form {
   width: 100%;
-  max-width: 380px;
+  max-width: 500px;
   height: 100%;
   margin-inline: auto;
-  padding: 24px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
   background-color: var(--background);
+  box-shadow: 0 14px 30px rgba(17, 24, 39, 0.08);
+}
+
+.form-header {
+  margin-bottom: 22px;
+}
+
+.form-eyebrow {
+  margin-bottom: 8px;
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .contact-form h3 {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-align: left;
 }
 
-.contact-form label {
+.form-intro {
+  color: #4b5563;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.form-field {
   display: block;
   margin-top: 14px;
+  min-width: 0;
+}
+
+.form-grid .form-field {
+  margin-top: 0;
+}
+
+.form-field span {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
   color: var(--title);
   font-size: 1rem;
   font-weight: 700;
-  text-align: center;
+  text-align: left;
+}
+
+.form-field small {
+  color: #6b7280;
+  font-size: 0.78rem;
+  font-weight: 400;
 }
 
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  margin-top: 8px;
-  padding: 12px;
-  border: 1px solid transparent;
-  border-bottom: 2px solid var(--title);
-  border-radius: 0;
-  background-color: var(--background);
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: #f8fbff;
   color: var(--text);
   font: 400 1rem/1.3 "Inter", Arial, sans-serif;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  outline: 3px solid rgba(37, 99, 235, 0.22);
   border-color: var(--primary);
+  background-color: var(--background);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #7b8798;
 }
 
 .contact-form textarea {
-  flex: 1;
-  min-height: 130px;
+  min-height: 160px;
   resize: vertical;
-  border: 0;
-  border-radius: 4px;
-  background-color: #e5e7eb;
 }
 
 .contact-form button {
   width: 100%;
-  margin-top: 18px;
-  padding: 14px 18px;
+  margin-top: 22px;
+  padding: 15px 18px;
   border: 0;
   border-radius: 999px;
   background-color: var(--button);
   color: var(--button-text);
   font: 700 1.0625rem/1 "Inter", Arial, sans-serif;
   cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .contact-form button:hover,
 .contact-form button:focus-visible {
   background-color: #1d4ed8;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.18);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 900px) {
@@ -529,6 +616,10 @@ footer {
     padding: 30px 22px;
     gap: 34px;
   }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 520px) {
@@ -543,10 +634,11 @@ footer {
 
   .navigation {
     gap: 7px;
+    grid-template-columns: 1fr;
   }
 
   .navigation a {
-    padding: 10px 6px;
+    padding: 11px 12px;
   }
 
   .about-card,

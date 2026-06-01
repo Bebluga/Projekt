@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kontakt</title>
+    <meta
+      name="description"
+      content="Kontaktangaben von Levin Bruggmann mit E-Mail, Wohnort, Social-Media-Link und Kontaktformular."
+    />
+    <title>Levin Bruggmann | Kontakt</title>
     <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body class="sub-page contact-page">
@@ -68,7 +72,7 @@
             aria-label="Video vom Wohnort Speicher"
           >
             <source src="../assets/Video Projekt M93.mp4" type="video/mp4" />
-            Dein Browser unterstützt dieses Video nicht.
+            Dein Browser unterst&uuml;tzt dieses Video nicht.
           </video>
 
           <a
@@ -85,35 +89,82 @@
           action="mailto:levin.bruggmann@edu.gbssg.ch"
           method="post"
           enctype="text/plain"
+          accept-charset="UTF-8"
+          aria-describedby="form-info"
         >
-          <h3>Kontaktformular</h3>
+          <div class="form-header">
+            <p class="form-eyebrow">E-Mail Formular</p>
+            <h3>Nachricht senden</h3>
+            <p class="form-intro" id="form-info">
+              F&uuml;lle die Angaben aus. Danach &ouml;ffnet sich dein
+              E-Mail-Programm mit der vorbereiteten Nachricht.
+            </p>
+          </div>
 
-          <label for="name">Name</label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            autocomplete="name"
-            required
-          />
+          <div class="form-grid">
+            <label class="form-field" for="name">
+              <span>Absender Name</span>
+              <input
+                id="name"
+                name="Absender Name"
+                type="text"
+                autocomplete="name"
+                placeholder="Dein Name"
+                required
+              />
+            </label>
 
-          <label for="email">E-Mail</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autocomplete="email"
-            required
-          />
+            <label class="form-field" for="email">
+              <span>Absender E-Mail</span>
+              <input
+                id="email"
+                name="Absender E-Mail"
+                type="email"
+                autocomplete="email"
+                placeholder="deine.email@example.com"
+                required
+              />
+            </label>
+          </div>
 
-          <label for="message">Nachricht</label>
-          <textarea id="message" name="nachricht" required></textarea>
+          <label class="form-field" for="subject">
+            <span>Betreff</span>
+            <input
+              id="subject"
+              name="Betreff"
+              type="text"
+              placeholder="Worum geht es?"
+              required
+            />
+          </label>
+
+          <label class="form-field" for="phone">
+            <span>Telefon <small>(optional)</small></span>
+            <input
+              id="phone"
+              name="Telefon"
+              type="tel"
+              autocomplete="tel"
+              placeholder="076 xxx xx xx"
+            />
+          </label>
+
+          <label class="form-field" for="message">
+            <span>Nachricht</span>
+            <textarea
+              id="message"
+              name="Nachricht"
+              rows="6"
+              placeholder="Schreibe deine Nachricht..."
+              required
+            ></textarea>
+          </label>
 
           <button type="submit">Absenden</button>
         </form>
       </section>
 
-      <footer>&copy;Levin Bruggmann</footer>
+      <footer>&copy; Levin Bruggmann</footer>
     </main>
   </body>
 </html>
